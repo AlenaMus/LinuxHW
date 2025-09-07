@@ -1,0 +1,40 @@
+Product Requirements Document: WSL Log File Reader
+1. Introduction
+This document outlines the product requirements for a simple command-line application designed to run on the Windows Subsystem for Linux (WSL). The application, referred to as the "Log File Reader," is a companion utility to the Time Logger, and its primary purpose is to demonstrate real-time reading of a dynamically updated file.
+
+2. Goals
+Primary Goal: To read and display the most recent log entry from the time.log file.
+
+Secondary Goal: To operate independently while being managed by a separate program.
+
+3. User Stories
+As a system administrator, I want to monitor the time logger's output in a separate terminal window without interfering with its logging process.
+
+As a developer, I want the reader to be a non-intrusive program that can be started and stopped by a master script.
+
+As a user, I want the output to be clean and easy to read, showing only the most recent log entry.
+
+4. Functional Requirements
+Log Reading: The program MUST read from a file named time.log.
+
+Data Display: The program MUST read and display only the last line of the time.log file.
+
+Frequency: The reading and display of the log file MUST occur every 7 seconds.
+
+Process Management: The program MUST be able to be started and stopped by an external script or parent process, without requiring direct user input.
+
+Error Handling: The script should handle the case where the log file does not exist without crashing.
+
+5. Technical Requirements
+Language: Bash scripting.
+
+Environment: Windows Subsystem for Linux (WSL).
+
+Dependencies: Standard Linux utilities such as tail and sleep. No external installations should be required.
+
+Integration: The program's standard output should be directed to the terminal from which it is executed.
+
+6. Future Considerations
+Combined Manager: This reader program will be integrated into a master script (task_manager.sh) to be launched and terminated alongside the time logger program.
+
+User Control: The master script will handle all user input, such as a command to stop both the logger and the reader simultaneously.

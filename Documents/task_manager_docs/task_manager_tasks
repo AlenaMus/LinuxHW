@@ -1,0 +1,32 @@
+Project Tasks: WSL Task Manager
+This document outlines the development tasks for the task_manager.sh script, based on the requirements defined in the PRD.
+
+1. Core Script Development
+[ ] Create the file: Create a new bash script file named task_manager.sh.
+
+[ ] Define file names: Define variables for the logger and reader script file names to make the code more configurable.
+
+[ ] Launch processes: Implement logic to launch log_time_backround.sh and read_time_backround.sh as background tasks.
+
+[ ] Manage output: Redirect the output of log_time_backround.sh to a null device to prevent it from cluttering the terminal.
+
+2. User Interaction
+[ ] Set up input loop: Create an infinite while loop that continuously checks for user input.
+
+[ ] Detect keypress: Implement a read command to detect a single keypress without requiring the user to press Enter.
+
+[ ] Check for 'q' key: Add a conditional statement to check if the pressed key is 'q'.
+
+3. Process Management and Cleanup
+[ ] Store PIDs: Store the Process IDs (PIDs) of both the logger and reader scripts when they are launched.
+
+[ ] Set up trap: Implement a trap command to ensure a cleanup function is called on script exit (e.g., when the q key is pressed).
+
+[ ] Kill processes: Create a cleanup function that uses the stored PIDs to gracefully terminate both background tasks.
+
+4. Documentation and Testing
+[ ] Add comments: Add comments to the script to explain key sections, such as the cleanup function and the input handling loop.
+
+[ ] Test launch: Verify that the script successfully launches both background tasks.
+
+[ ] Test termination: Confirm that pressing the q key successfully stops both the logger and the reader.

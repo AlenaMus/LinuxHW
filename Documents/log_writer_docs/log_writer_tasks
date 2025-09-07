@@ -1,0 +1,72 @@
+Project Tasks: WSL Time Logger
+This document outlines the development tasks required to build the WSL Time Logger and its companion scripts, based on the requirements defined in the PRD.
+
+1. Logger Module (log_time.sh)
+Core Functionality
+
+[ ] Create a new bash script file named log_time.sh.
+
+[ ] Implement a core infinite while loop to run in the background.
+
+[ ] Inside the loop, add a command to write the current time to time.log.
+
+[ ] Add a sleep command to pause the loop for 10 seconds.
+
+File Management
+
+[ ] Add logic to create or truncate the time.log file at the start of the script.
+
+[ ] Implement logic to ensure the script has write permissions to time.log.
+
+Integration
+
+[ ] Remove all user-facing prompts and self-termination logic (read, trap, cleanup functions).
+
+2. Reader Module (read_time.sh)
+Core Functionality
+
+[ ] Create a new bash script file named read_time.sh.
+
+[ ] Implement a core infinite while loop.
+
+[ ] Inside the loop, add a tail -1 command to read only the last line of time.log.
+
+[ ] Add a sleep command to pause the loop for 7 seconds.
+
+Integration
+
+[ ] Remove all user-facing prompts and self-termination logic (read, trap, cleanup functions).
+
+3. Combined Manager (task_manager.sh)
+Core Functionality
+
+[ ] Create a new bash script file named task_manager.sh.
+
+[ ] Implement a cleanup function to gracefully kill background processes.
+
+[ ] Use trap to ensure the cleanup function is called on script exit.
+
+Process Management
+
+[ ] Launch log_time.sh as a background process.
+
+[ ] Store the Process ID (PID) of log_time.sh.
+
+[ ] Launch read_time.sh as a background process, ensuring its output is visible in the terminal.
+
+[ ] Store the Process ID (PID) of read_time.sh.
+
+User Control
+
+[ ] Implement a while loop that continuously checks for a specific keypress (e.g., 'q').
+
+[ ] Add a conditional statement to break the loop when the designated key is pressed.
+
+4. General Tasks
+[ ] Add the #!/bin/bash shebang line to the top of all three scripts.
+
+[ ] Ensure all three script files have Unix-style line endings (LF).
+
+[ ] Grant execute permissions to all three files (chmod +x).
+
+[ ] Run the task_manager.sh script to test the complete system.

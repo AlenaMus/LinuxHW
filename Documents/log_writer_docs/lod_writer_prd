@@ -1,0 +1,40 @@
+Product Requirements Document: WSL Time Logger
+1. Introduction
+This document outlines the product requirements for a simple command-line application designed to run on the Windows Subsystem for Linux (WSL). The application, referred to as the "Time Logger," will serve as a foundational utility for demonstrating and testing basic background processes and inter-process communication within a Linux environment.
+
+2. Goals
+Primary Goal: To continuously log the current time to a file at a fixed interval.
+
+Secondary Goal: To be manageable by a separate program, allowing for remote start, stop, and output control.
+
+3. User Stories
+As a system administrator, I want to run the time logger in the background so that it can operate without my continuous intervention.
+
+As a developer, I want to be able to stop the time logger gracefully so that it doesn't leave orphaned processes.
+
+As a user, I want a clear indication of where the logged data is being stored.
+
+4. Functional Requirements
+Log Generation: The program MUST create or truncate a file named time.log.
+
+Data Logging: The program MUST write the current system time (including the date) to the time.log file every 10 seconds.
+
+Background Operation: The core logging loop MUST run as a background process.
+
+Permissions: The program MUST have the necessary permissions to create and write to the log file.
+
+Process Management: The program MUST be able to be started and stopped by an external script or parent process, without requiring direct user input.
+
+5. Technical Requirements
+Language: Bash scripting.
+
+Environment: Windows Subsystem for Linux (WSL).
+
+Dependencies: Standard Linux utilities such as date, echo, sleep, touch, chmod, kill, tail, and grep. No external installations should be required.
+
+Error Handling: The script should gracefully handle the termination of its background process and should suppress error messages when killing a process that may have already been stopped (2>/dev/null).
+
+6. Future Considerations
+Reader Module: A separate, companion script will be developed to read the last line from the time.log file at a specified interval (e.g., every 7 seconds) and display the output. This module will also be designed for remote execution and control.
+
+Combined Manager: A master script (task_manager.sh) will be created to orchestrate both the logger and reader programs. This manager will be responsible for starting both processes and providing a single, clean interface for the user to stop them.

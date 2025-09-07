@@ -1,0 +1,38 @@
+Product Requirements Document: WSL Task Manager
+1. Introduction
+This document outlines the product requirements for a command-line application designed to run on the Windows Subsystem for Linux (WSL). The application, referred to as the "Task Manager," serves as a central point of control for the Time Logger and Log File Reader programs. Its primary purpose is to simplify the user experience by managing multiple background processes from a single terminal window.
+
+2. Goals
+Primary Goal: To provide a unified control point for both the time logger and log file reader programs.
+
+Secondary Goal: To ensure a clean and controlled termination of all related processes.
+
+3. User Stories
+As a user, I want to start both the logger and reader programs with a single command.
+
+As a user, I want to see the output from the log reader in the same terminal window where I started the Task Manager.
+
+As a user, I want to stop all running background processes by pressing a single key.
+
+4. Functional Requirements
+Process Launch: The program MUST launch both log_time_backround.sh and read_time_backround.sh as independent background processes.
+
+Output Management: The Task Manager MUST redirect the output of the logging script to a null device, ensuring only the output from the reader script is visible in the terminal.
+
+Input Handling: The program MUST continuously monitor for a user keypress.
+
+Termination: The program MUST stop all background processes gracefully when the q key is pressed.
+
+Cleanup: The program MUST include a cleanup routine to kill all child processes upon exit, preventing orphaned processes.
+
+5. Technical Requirements
+Language: Bash scripting.
+
+Environment: Windows Subsystem for Linux (WSL).
+
+Dependencies: Standard Linux utilities such as kill, read, trap, and the two subordinate scripts (log_time_backround.sh and read_time_backround.sh).
+
+6. Future Considerations
+Error Reporting: Implement more robust error handling to report when a subordinate script fails to start.
+
+Configuration: Allow the user to configure the names and locations of the subordinate scripts.
